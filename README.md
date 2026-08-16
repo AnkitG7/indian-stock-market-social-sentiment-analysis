@@ -160,17 +160,17 @@ $$w_i = \ln(1 + \text{likes}_i + 2 \cdot \text{retweets}_i + 0.5 \cdot \text{rep
 ### 2. Exponential Time Decay
 Older tweets experience half-life exponential attenuation:
 
-$$\omega_i(t) = w_i \cdot \exp\left(-\frac{\ln 2}{t_{\text{half-life}}} \cdot (t_{\text{window\_end}} - t_i)\right)$$
+$$\omega_i(t) = w_i \cdot \exp\left(-\frac{\ln 2}{t_{\text{half}}} \cdot (t_{\text{end}} - t_i)\right)$$
 
 ### 3. Weighted Sentiment Mean & Effective Sample Size
 $$\mu_t = \frac{\sum_{i=1}^N \omega_i \cdot S_i}{\sum_{i=1}^N \omega_i}, \quad N_{\text{eff}} = \frac{\left(\sum \omega_i\right)^2}{\sum \omega_i^2}$$
 
 ### 4. 95% Confidence Interval (Weighted SEM)
-$$s_w = \sqrt{\frac{\sum \omega_i (S_i - \mu_t)^2}{\sum \omega_i}}, \quad \text{CI}_{95\%} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
+$$s_w = \sqrt{\frac{\sum \omega_i (S_i - \mu_t)^2}{\sum \omega_i}}, \quad \text{CI}_{0.95} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
 
 ### 5. Signal Decision Gating
-- **`BUY`**: $\text{CI}_{\text{lower}} > +0.20 \quad \text{AND} \quad \text{Volume Anomaly Ratio} \ge 1.50$
-- **`SELL`**: $\text{CI}_{\text{upper}} < -0.20 \quad \text{AND} \quad \text{Volume Anomaly Ratio} \ge 1.50$
+- **`BUY`**: $\text{CI}_{\text{lower}} > +0.20$ and $\text{Volume Anomaly Ratio} \ge 1.50$
+- **`SELL`**: $\text{CI}_{\text{upper}} < -0.20$ and $\text{Volume Anomaly Ratio} \ge 1.50$
 - **`HOLD`**: Otherwise (insufficient consensus, wide CI, or normal volume)
 
 ---

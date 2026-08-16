@@ -120,7 +120,7 @@ flowchart TD
 
 ### Decision 4: Kish Effective Sample Size ($N_{\text{eff}}$) & Weighted SEM vs. Simple Standard Error
 * **Way Chosen**:
-  $$N_{\text{eff}} = \frac{\left(\sum \omega_i\right)^2}{\sum \omega_i^2}, \quad s_w = \sqrt{\frac{\sum \omega_i(S_i - \mu_t)^2}{\sum \omega_i}}, \quad \text{CI}_{95\%} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
+  $$N_{\text{eff}} = \frac{\left(\sum \omega_i\right)^2}{\sum \omega_i^2}, \quad s_w = \sqrt{\frac{\sum \omega_i(S_i - \mu_t)^2}{\sum \omega_i}}, \quad \text{CI}_{0.95} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
 * **Why NOT the other way**:
   - Naive Standard Error of the Mean ($\text{SEM} = \frac{\sigma}{\sqrt{N}}$) assumes unweighted, independent, identically distributed (i.i.d.) observations.
   - In financial social media, an institutional analyst tweet with 50,000 followers and 500 retweets carries far greater weight ($w_i$) than a zero-follower bot.
@@ -131,7 +131,7 @@ flowchart TD
 ### Decision 5: Gated Composite Signals vs. Raw Sentiment Thresholds
 * **Way Chosen**: A trade signal (`BUY`/`SELL`) is ONLY generated if:
   1. $\text{CI}_{\text{lower}} > +0.20$ (for BUY) or $\text{CI}_{\text{upper}} < -0.20$ (for SELL).
-  2. **AND** $\text{Volume Anomaly Ratio} = \frac{\text{window\_volume}}{\text{rolling\_mean}} \ge 1.50$.
+  2. **AND** $\text{Volume Anomaly Ratio} = \frac{\text{window-volume}}{\text{rolling-mean}} \ge 1.50$.
 * **Why NOT the other way**:
   - If a signal is generated whenever average sentiment is slightly positive (e.g. $+0.05$), the system generates dozens of false-positive trades during low-volume, noisy chop.
   - Requiring the entire 95% Confidence Interval to clear $\pm 0.20$ ensures **statistical certainty**, and requiring $\text{VAR} \ge 1.50$ ensures **market participation momentum**.
@@ -234,7 +234,7 @@ $$w_i = \ln\left(1 + \text{likes}_i + 2 \cdot \text{retweets}_i + 0.5 \cdot \tex
 
 ### Half-Life Exponential Temporal Attenuation
 A tweet posted at the start of a time window carries less predictive weight than a tweet posted immediately prior to the window close:
-$$\lambda = \frac{\ln 2}{t_{\text{half-life}}}, \quad \omega_i(t) = w_i \cdot \exp\left(-\lambda \cdot (t_{\text{window\_end}} - t_i)\right)$$
+$$\lambda = \frac{\ln 2}{t_{\text{half}}}, \quad \omega_i(t) = w_i \cdot \exp\left(-\lambda \cdot (t_{\text{end}} - t_i)\right)$$
 
 ### Weighted Sentiment Mean & Variance
 $$\mu_t = \frac{\sum_{i=1}^N \omega_i \cdot S_i}{\sum_{i=1}^N \omega_i}$$
@@ -244,7 +244,7 @@ $$s_w^2 = \frac{\sum_{i=1}^N \omega_i \cdot (S_i - \mu_t)^2}{\sum_{i=1}^N \omega
 When observations carry unequal weights, the effective sample size is derived using Kish's formula (1965):
 $$N_{\text{eff}} = \frac{\left(\sum_{i=1}^N \omega_i\right)^2}{\sum_{i=1}^N \omega_i^2}$$
 $$\text{SEM}_w = \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
-$$\text{CI}_{95\%} = \left[\mu_t - 1.96 \cdot \text{SEM}_w, \; \mu_t + 1.96 \cdot \text{SEM}_w\right]$$
+$$\text{CI}_{0.95} = \left[\mu_t - 1.96 \cdot \text{SEM}_w, \; \mu_t + 1.96 \cdot \text{SEM}_w\right]$$
 
 ---
 

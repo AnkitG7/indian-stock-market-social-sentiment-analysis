@@ -56,8 +56,7 @@ This report provides a comprehensive, section-by-section breakdown of how every 
 1. **Real-Time Data Structures** ([`models.py`](file:///c:/FS/QodeAdvREL/models.py)):
    - Strongly-typed Python `@dataclass` domain models: `RawTweet`, `ProcessedTweet`, `TradingSignal`, `MarketCandle`, `ValidationResult`, `CollectionStats`.
    - Low-memory footprint with `__slots__`-compatible layouts and primitive mappings.
-2. **Rate Limiting & Authentication Handling** ([`scraper/rate_limiter.py`](file:///c:/FS/QodeAdvREL/scraper/rate_limiter.py)):
-   - Adaptive exponential backoff with full jitter: $\text{delay} = \min(\text{max\_delay}, \text{base\_delay} \cdot 2^{\text{failures}}) \pm \text{random\_jitter}$.
+   - Adaptive exponential backoff with full jitter: $\text{delay} = \min(\text{max-delay}, \text{base-delay} \cdot 2^{\text{failures}}) \pm \text{jitter}$.
    - Uses authenticated browser sessions and session-cookie injection where required for normal authenticated access, with adaptive rate limiting and retry/backoff handling.
 3. **Time & Space Complexity Optimizations**:
    - Text cleaning uses pre-compiled module-level regular expressions (`re.compile`) achieving >350 tweets/sec.
@@ -122,14 +121,14 @@ This report provides a comprehensive, section-by-section breakdown of how every 
    - Generates bounded continuous sentiment scores $S_i \in [-1.0, +1.0]$.
 3. **Quantitative Signal Generator with 95% Confidence Intervals** ([`analysis/signal_generator.py`](file:///c:/FS/QodeAdvREL/analysis/signal_generator.py)):
    - **Engagement Weighting**: $w_i = \ln(1 + \text{likes} + 2\cdot\text{RT} + 0.5\cdot\text{replies}) \cdot \ln(1 + \text{followers})$.
-   - **Exponential Time Decay**: $\omega_i(t) = w_i \cdot e^{-\lambda(t - t_i)}$, where $\lambda = \frac{\ln 2}{\text{half\_life}}$.
+   - **Exponential Time Decay**: $\omega_i(t) = w_i \cdot e^{-\lambda(t - t_i)}$, where $\lambda = \frac{\ln 2}{t_{\text{half}}}$.
    - **Weighted Mean Sentiment**: $\mu_t = \frac{\sum \omega_i S_i}{\sum \omega_i}$.
    - **Kish Effective Sample Size**: $N_{\text{eff}} = \frac{(\sum \omega_i)^2}{\sum \omega_i^2}$.
    - **Weighted SEM 95% Confidence Interval**:
-     $$\text{CI}_{95\%} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
+     $$\text{CI}_{0.95} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
    - **Decision Logic**:
-     - **BUY**: If $\text{CI}_{\text{lower}} > +0.20$ AND Volume Anomaly Ratio $\ge 1.5$.
-     - **SELL**: If $\text{CI}_{\text{upper}} < -0.20$ AND Volume Anomaly Ratio $\ge 1.5$.
+     - **BUY**: If $\text{CI}_{\text{lower}} > +0.20$ and $\text{Volume Anomaly Ratio} \ge 1.5$.
+     - **SELL**: If $\text{CI}_{\text{upper}} < -0.20$ and $\text{Volume Anomaly Ratio} \ge 1.5$.
      - **HOLD**: When confidence intervals straddle zero or volume is normal.
 4. **Memory-Efficient Visualizations** ([`analysis/visualizer.py`](file:///c:/FS/QodeAdvREL/analysis/visualizer.py)):
    - Implemented Largest-Triangle-Three-Buckets (**LTTB**) downsampling algorithm to reduce high-frequency points to target bins without losing visual extrema.

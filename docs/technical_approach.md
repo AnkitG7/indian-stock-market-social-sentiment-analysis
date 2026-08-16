@@ -141,7 +141,7 @@ $$w_i = \ln(1 + \text{likes}_i + 2 \cdot \text{retweets}_i + 0.5 \cdot \text{rep
 
 Information on financial Twitter decays rapidly. We apply exponential decay with a configurable half-life (default: 60 minutes):
 
-$$\omega_i(t) = w_i \cdot \exp\left(-\frac{\ln 2}{t_{\text{half-life}}} \cdot (t - t_i)\right)$$
+$$\omega_i(t) = w_i \cdot \exp\left(-\frac{\ln 2}{t_{\text{half}}} \cdot (t - t_i)\right)$$
 
 ### Composite Score
 
@@ -162,7 +162,7 @@ $$N_{\text{eff}} = \frac{(\sum \omega_i)^2}{\sum \omega_i^2}$$
 
 $$s_w = \sqrt{\frac{\sum \omega_i (S_i - \mu_t)^2}{\sum \omega_i}}$$
 
-$$\text{CI}_{95\%} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
+$$\text{CI}_{0.95} = \mu_t \pm 1.96 \cdot \frac{s_w}{\sqrt{N_{\text{eff}}}}$$
 
 ### Signal Gating
 
