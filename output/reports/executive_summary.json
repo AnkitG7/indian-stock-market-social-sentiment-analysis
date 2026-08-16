@@ -1,0 +1,105 @@
+{
+  "report_generated_at": "2026-08-16T09:22:54.447406+00:00",
+  "total_tweets_analyzed": 76,
+  "language_breakdown": {
+    "en": 70,
+    "hinglish": 4,
+    "hi": 2
+  },
+  "sentiment_distribution": {
+    "bullish_count": 33,
+    "bullish_pct": 43.42,
+    "bearish_count": 16,
+    "bearish_pct": 21.05,
+    "neutral_count": 27,
+    "neutral_pct": 35.53,
+    "mean_sentiment": 0.13
+  },
+  "top_symbols_mentioned": {
+    "NIFTY": 47,
+    "NIFTY50": 41,
+    "SENSEX": 30,
+    "BANKNIFTY": 24,
+    "STOCKMARKET": 15,
+    "TRADING": 10,
+    "INDIANSTOCKMARKET": 9,
+    "TECHNICALANALYSIS": 8,
+    "INVESTING": 7,
+    "STOCKMARKETINDIA": 7
+  },
+  "top_tfidf_features": [
+    {
+      "term": "while",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "us iran tensions",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "will",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "when",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "view",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "update",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "us iran",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "sell",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "there",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "this week",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "tensions",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "than",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "ticker_sensex ticker_banknifty",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "ticker_nifty ticker_sensex ticker_banknifty",
+      "idf_weight": 3.9575
+    },
+    {
+      "term": "trades",
+      "idf_weight": 3.9575
+    }
+  ],
+  "signal_breakdown": {
+    "total_windows": 33,
+    "buy_signals": 2,
+    "sell_signals": 1,
+    "hold_signals": 30
+  },
+  "market_validation": {
+    "total_signals_evaluated": 0,
+    "directional_accuracy_pct": 0.0,
+    "buy_precision_pct": 0.0,
+    "sell_precision_pct": 0.0,
+    "average_forward_return_pct": 0.0
+  }
+}

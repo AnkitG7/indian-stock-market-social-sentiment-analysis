@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-08-16T09:22:55.969830+00:00",
+  "total_tweets_analyzed": 1786,
+  "social_put_call_ratio": {
+    "pcr_ratio": 0.383,
+    "ce_mentions": 141,
+    "pe_mentions": 54,
+    "top_ce_strikes": [
+      [
+        "78000",
+        37
+      ],
+      [
+        "77900",
+        25
+      ],
+      [
+        "77800",
+        15
+      ],
+      [
+        "77500",
+        12
+      ],
+      [
+        "24300",
+        10
+      ]
+    ],
+    "top_pe_strikes": [
+      [
+        "78000",
+        14
+      ],
+      [
+        "77900",
+        6
+      ],
+      [
+        "24400",
+        5
+      ],
+      [
+        "77800",
+        5
+      ],
+      [
+        "24500",
+        3
+      ]
+    ]
+  },
+  "author_tier_divergence": {
+    "tier_1_high_influence": {
+      "count": 16,
+      "mean_sentiment": -0.0305
+    },
+    "tier_2_active_traders": {
+      "count": 0,
+      "mean_sentiment": 0.0
+    },
+    "tier_3_retail": {
+      "count": 1770,
+      "mean_sentiment": 0.1008
+    },
+    "smart_retail_spread": -0.1313
+  },
+  "sentiment_volatility": {
+    "rolling_std_mean": 0.416,
+    "market_regime": "High Volatility / Directional Uncertainty"
+  },
+  "session_breakdown": {
+    "Pre-Market (08:00-09:15)": {
+      "tweet_count": 339,
+      "mean_sentiment": 0.0993
+    },
+    "Opening Bell (09:15-10:30)": {
+      "tweet_count": 177,
+      "mean_sentiment": 0.0293
+    },
+    "Mid-Day Consolidation (10:30-13:30)": {
+      "tweet_count": 404,
+      "mean_sentiment": 0.1252
+    },
+    "Closing Rush (13:30-15:30)": {
+      "tweet_count": 316,
+      "mean_sentiment": 0.0901
+    },
+    "Post-Market / Evening": {
+      "tweet_count": 550,
+      "mean_sentiment": 0.1092
+    }
+  },
+  "top_co_occurrences": [
+    {
+      "pair": "NIFTY - SENSEX",
+      "count": 639
+    },
+    {
+      "pair": "BANKNIFTY - NIFTY",
+      "count": 312
+    },
+    {
+      "pair": "NIFTY - NIFTY50",
+      "count": 297
+    },
+    {
+      "pair": "NIFTY - STOCKMARKET",
+      "count": 227
+    },
+    {
+      "pair": "SENSEX - STOCKMARKET",
+      "count": 190
+    },
+    {
+      "pair": "NIFTY50 - SENSEX",
+      "count": 185
+    },
+    {
+      "pair": "NIFTY50 - STOCKMARKET",
+      "count": 148
+    },
+    {
+      "pair": "BANKNIFTY - SENSEX",
+      "count": 107
+    }
+  ]
+}
